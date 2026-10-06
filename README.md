@@ -1,7 +1,6 @@
 # OPLang Compiler Lite
 
 Trình biên dịch OPLang với giao diện web, được duy trì bởi [nguyendnam](https://github.com/nguyendnam).
-Repository: [nguyendnam/OPLang-Compiler-Lite](https://github.com/nguyendnam/OPLang-Compiler-Lite).
 
 Dự án phục vụ học tập và thử nghiệm các giai đoạn của một compiler:
 
@@ -143,7 +142,3 @@ Quy tắc ngữ nghĩa: [oplang-semantic_constraints_and_errors.md](oplang-seman
 ## Triển khai
 
 Backend dùng `Dockerfile`; `render.yaml` có cấu hình Render và yêu cầu đặt `OPLANG_ALLOWED_ORIGINS` theo domain frontend. Frontend triển khai thư mục `frontend/dist/` lên dịch vụ static hosting; đặt `VITE_API_URL` trước khi build. Backend đọc `PORT` từ môi trường, mặc định `10000` trong Docker.
-
-## License
-
-[MIT](LICENSE) — Nguyễn Đình Nam ([nguyendnam](https://github.com/nguyendnam)).
