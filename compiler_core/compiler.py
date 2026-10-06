@@ -54,6 +54,10 @@ class OPLangCompiler:
             self.project_root
             / "build"
             / "OPLangVisitor.py",
+
+            self.project_root
+            / "build"
+            / "lexererr.py",
         ]
 
         return all(path.exists() for path in required)

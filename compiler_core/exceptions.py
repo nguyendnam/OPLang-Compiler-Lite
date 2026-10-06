@@ -1,2 +1,2 @@
 class CompilerCoreNotInstalled(RuntimeError):
-    """Raised until the independent OPLang compiler implementation is migrated here."""
+    """Raised when compiler sources or generated ANTLR modules are missing."""

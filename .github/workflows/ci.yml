@@ -49,7 +49,7 @@ jobs:
 
       - name: Generate ANTLR sources
         run: |
-          bash scripts/build_antlr.sh
+          python scripts/build_antlr.py
 
 
       - name: Verify generated ANTLR files
@@ -62,14 +62,7 @@ jobs:
 
       - name: Run compiler tests
         run: |
-          python -m pytest \
-            tests/test_lexer.py \
-            tests/test_parser.py \
-            tests/test_ast_gen.py \
-            tests/test_checker.py \
-            tests/test_compiler_core.py \
-            tests/test_examples.py \
-            -q
+          python -m pytest tests -q
 
 
       - name: Run API tests

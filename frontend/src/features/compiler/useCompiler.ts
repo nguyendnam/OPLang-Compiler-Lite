@@ -41,6 +41,9 @@ export function useCompiler() {
   }, [])
 
   const clearResult = useCallback(() => {
+    activeRequest.current?.abort()
+    activeRequest.current = null
+    setLoading(false)
     setResult(null)
     setNetworkError(null)
   }, [])

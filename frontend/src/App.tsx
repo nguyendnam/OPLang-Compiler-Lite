@@ -11,12 +11,22 @@ const DEFAULT_SOURCE = compilerExamples[0].source
 
 export default function App() {
   const [source, setSource] = useState(
-    () => localStorage.getItem(SOURCE_STORAGE_KEY) ?? DEFAULT_SOURCE
+    () => {
+      try {
+        return localStorage.getItem(SOURCE_STORAGE_KEY) ?? DEFAULT_SOURCE
+      } catch {
+        return DEFAULT_SOURCE
+      }
+    }
   )
   const { result, networkError, loading, compile, clearResult } = useCompiler()
 
   useEffect(() => {
-    localStorage.setItem(SOURCE_STORAGE_KEY, source)
+    try {
+      localStorage.setItem(SOURCE_STORAGE_KEY, source)
+    } catch {
+      // Editing still works when browser storage is unavailable or full.
+    }
   }, [source])
 
   const onCompile = useCallback(() => {
