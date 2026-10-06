@@ -9,13 +9,12 @@ WORKDIR /app
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         default-jre-headless \
-        curl \
     && rm -rf /var/lib/apt/lists/*
 
-COPY scripts/build_antlr.sh ./scripts/build_antlr.sh
+COPY scripts/build_antlr.py ./scripts/build_antlr.py
 COPY src/grammar ./src/grammar
 
-RUN bash scripts/build_antlr.sh
+RUN python scripts/build_antlr.py
 
 
 # =========================================================

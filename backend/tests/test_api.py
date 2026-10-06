@@ -44,6 +44,18 @@ def test_valid_compilation(client: TestClient) -> None:
     assert body["compilation_time_ms"] >= 0
 
 
+def test_health_returns_503_when_compiler_is_missing(client: TestClient) -> None:
+    class MissingCompilerService:
+        def is_available(self) -> bool:
+            return False
+
+    app.dependency_overrides[get_compiler_service] = lambda: MissingCompilerService()
+    response = client.get("/api/v1/health")
+    assert response.status_code == 503
+    assert response.json()["compilerCoreInstalled"] is False
+    assert response.json()["status"] == "unavailable"
+
+
 def test_parser_error_is_a_domain_result(client: TestClient) -> None:
     response = client.post("/api/v1/compile", json={"source": "class Main {"})
 
